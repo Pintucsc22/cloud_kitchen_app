@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "214609815288",
+    "project_id": "cloud-kitchen-app-da092",
+    "storage_bucket": "cloud-kitchen-app-da092.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214609815288:android:2c65417a3e4f552af67d0d",
+        "android_client_info": {
+          "package_name": "com.example.cloud_kitchen_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGsNEvRO5yWfIlfL7HVbd4wTRA7nlEk30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

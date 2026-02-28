@@ -1,0 +1,48 @@
+name: cloud_kitchen_app
+description: "A new Flutter project."
+publish_to: 'none' # Prevent publishing to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # iOS-style icons
+  cupertino_icons: ^1.0.8
+
+  # Firebase dependencies
+  firebase_core: ^4.4.0
+  firebase_auth: ^6.1.4
+  cloud_firestore: ^6.1.2
+  # Add other Firebase packages if needed:
+  # firebase_analytics, firebase_storage, etc.
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_native_splash: ^2.3.5
+
+flutter_native_splash:
+  color: "#ffffff"
+  android: true
+  ios: true
+
+flutter:
+  uses-material-design: true
+
+  # Assets declaration
+  #assets:
+   # - assets/logo.png
+
+  # Fonts (optional, example)
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: fonts/Roboto-Regular.ttf
+  #       - asset: fonts/Roboto-Bold.ttf
+  #         weight: 700
