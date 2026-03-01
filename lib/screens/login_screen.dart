@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+// Updated imports for screens inside lib/screens/
 import 'register_screen.dart';
 import 'home_screen.dart';
-import 'role_screens.dart';
+import './role_screens/admin_screen.dart';
+import './role_screens/kitchen_screen.dart';
+import './role_screens/store_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,7 +17,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -28,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       final uid = userCredential.user!.uid;
 
-      // 2️⃣ Fetch Firestore document
+      // 2️⃣ Fetch user document from Firestore
       final userDoc =
           await FirebaseFirestore.instance.collection('users').doc(uid).get();
 
@@ -39,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
         return;
       }
 
-      // 3️⃣ Get role
+      // 3️⃣ Get role from Firestore
       final role = userDoc['role'] ?? 'customer';
 
       // 4️⃣ Navigate based on role
@@ -64,7 +67,6 @@ class _LoginScreenState extends State<LoginScreen> {
           MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
       }
-
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Login Failed: $e")),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'login_screen.dart';
+import './login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,7 +21,6 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(Icons.logout),
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
-
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginScreen()),
@@ -36,7 +35,7 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            // 🔥 Welcome Section
+            // 🔥 Gradient Header
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -57,8 +56,9 @@ class HomeScreen extends StatelessWidget {
                   const Text(
                     "Welcome 👋",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 24,
                       color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 25),
 
-            // 🍔 Categories
+            // 🍔 Categories Section
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -108,13 +108,14 @@ class HomeScreen extends StatelessWidget {
                   CategoryCard(icon: Icons.local_pizza, title: "Pizza"),
                   CategoryCard(icon: Icons.rice_bowl, title: "Biryani"),
                   CategoryCard(icon: Icons.icecream, title: "Dessert"),
+                  CategoryCard(icon: Icons.local_cafe, title: "Drinks"),
                 ],
               ),
             ),
 
-            const SizedBox(height: 25),
+            const SizedBox(height: 30),
 
-            // 🔥 Popular Items
+            // 🌟 Popular Items
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -149,6 +150,12 @@ class HomeScreen extends StatelessWidget {
                     price: "₹299",
                     icon: Icons.local_pizza,
                   ),
+                  SizedBox(height: 15),
+                  FoodCard(
+                    title: "Ice Cream Sundae",
+                    price: "₹149",
+                    icon: Icons.icecream,
+                  ),
                 ],
               ),
             ),
@@ -161,6 +168,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// ===== Category Card =====
 class CategoryCard extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -178,7 +186,7 @@ class CategoryCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.shade300,
@@ -190,15 +198,19 @@ class CategoryCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 35, color: Colors.deepOrange),
-          const SizedBox(height: 8),
-          Text(title),
+          Icon(icon, size: 40, color: Colors.deepOrange),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );
   }
 }
 
+// ===== Food Card =====
 class FoodCard extends StatelessWidget {
   final String title;
   final String price;
@@ -214,10 +226,11 @@ class FoodCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15),
+      height: 90,
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.shade300,
