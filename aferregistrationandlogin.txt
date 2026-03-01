@@ -36110,4 +36110,152 @@ cmp=com.example.cloud_kitchen_app/.MainActivity (has extras) }
 [  +16 ms] Done persisting file store
 [  +25 ms] runHooks() - done
 [[1m +969 ms[22m] [1mSyncing files to device 22111317I...[22m
-[  +11 ms] Compiling dart to kernel with 0 updated file
+[  +11 ms] Compiling dart to kernel with 0 updated files
+[  +12 ms] Processing bundle.
+[   +7 ms] <- recompile package:cloud_kitchen_app/main.dart 9fdfa024-e6a2-463e-a453-e54553d41db9
+[        ] <- 9fdfa024-e6a2-463e-a453-e54553d41db9
+[  +10 ms] Bundle processing done.
+[[1m+7289 ms[22m] Updating files.
+[        ] Pending asset builds completed. Writing dirty entries.
+[        ] DevFS: Sync finished
+[        ] Syncing files to device 22111317I... (completed in 7.3s)
+[        ] Synced 0.0MB.
+[        ] <- accept
+[[1m +511 ms[22m] Connected to _flutterView/0xb400007d2c305a20.
+[   +7 ms] [1mFlutter run key commands.[22m
+[        ] [1mr Hot reload. 🔥🔥🔥[22m
+[        ] [1mR Hot restart.[22m
+[        ] [1mh List all available interactive commands.[22m
+[        ] [1md Detach (terminate "flutter run" but leave application running).[22m
+[        ] [1mc Clear the screen[22m
+[        ] [1mq Quit (terminate the application on the device).[22m
+[        ] [1mA Dart VM Service on 22111317I is available at: http://127.0.0.1:46697/rNqCspknV7I=/[22m
+[        ] [1mThe Flutter DevTools debugger and profiler on 22111317I is available at:[22m
+[1m           http://127.0.0.1:46697/rNqCspknV7I=/devtools/?uri=ws://127.0.0.1:46697/rNqCspknV7I=/ws[22m
+[[1m+394322 ms[22m] Skipping target: gen_dart_plugin_registrant
+[        ] Skipping target: gen_localizations
+[   +7 ms] Skipping target: _composite
+[   +2 ms] complete
+[   +3 ms] [1mPerforming hot reload...[22m
+[  +49 ms] Updating assets for android
+[        ] runHooks() with {TargetFile: /home/kali/Desktop/development/cloud_kitchen_app/lib/main.dart, BuildMode: debug} and TargetPlatform.android_arm64
+[        ] runHooks() - up-to-date already
+[[1m +612 ms[22m] Scanned through 685 files in 160ms
+[   +1 ms] [1mSyncing files to device 22111317I...[22m
+[   +4 ms] Compiling dart to kernel with 2 updated files
+[        ] Processing bundle.
+[   +1 ms] <- recompile package:cloud_kitchen_app/main.dart a9493707-75c2-47fe-b6a5-adfdf4dbe335
+[        ] package:cloud_kitchen_app/main.dart
+[        ] package:cloud_kitchen_app/screens/role_screens/manage_menu_screen.dart
+[        ] <- a9493707-75c2-47fe-b6a5-adfdf4dbe335
+[   +1 ms] Bundle processing done.
+[[1m +764 ms[22m] Updating files.
+[        ] Pending asset builds completed. Writing dirty entries.
+[[1m +231 ms[22m] DevFS: Sync finished
+[   +1 ms] Syncing files to device 22111317I... (completed in 1,006ms)
+[   +1 ms] Synced 0.0MB.
+[[1m +434 ms[22m] <- accept
+[   +8 ms] reloaded 2 of 1000 libraries
+[  +33 ms] Reassembling application
+[[1m +427 ms[22m] Hot reload performed in 2,445ms.
+[  +55 ms] Performing hot reload... (completed in 2,631ms)
+[   +1 ms] [1mReloaded 2 of 1000 libraries in 2,668ms (compile: 768 ms, reload: 442 ms, reassemble: 367 ms).[22m
+[[1m+668314 ms[22m] Skipping target: gen_dart_plugin_registrant
+[  +15 ms] Skipping target: gen_localizations
+[  +17 ms] Skipping target: _composite
+[  +24 ms] complete
+[        ] [1mPerforming hot reload...[22m
+[[1m +682 ms[22m] Scanned through 685 files in 584ms
+[  +11 ms] [1mSyncing files to device 22111317I...[22m
+[  +25 ms] Compiling dart to kernel with 1 updated files
+[   +1 ms] Processing bundle.
+[        ] <- recompile package:cloud_kitchen_app/main.dart 49a2af36-8cc8-4a4d-bb69-0fd666711864
+[   +4 ms] package:cloud_kitchen_app/screens/role_screens/kitchen_screen.dart
+[        ] <- 49a2af36-8cc8-4a4d-bb69-0fd666711864
+[   +4 ms] Bundle processing done.
+[31m[[1m +285 ms[22m] [1mlib/screens/role_screens/kitchen_screen.dart:10:34: Error: Method invocation is not a constant expression.[22m[39m
+[31m[        ] [1m      FirebaseFirestore.instance.collection('orders');[22m[39m
+[31m[   +9 ms] [1m                                 ^^^^^^^^^^[22m[39m
+[[1m+1055 ms[22m] Syncing files to device 22111317I... (completed in 1,389ms)
+[        ] Synced 0.0MB.
+[  +12 ms] Performing hot reload... (completed in 2,096ms)
+[   +1 ms] [1mTry again after fixing the above error(s).[22m
+[[1m+103439 ms[22m] Skipping target: gen_dart_plugin_registrant
+[        ] Skipping target: gen_localizations
+[   +6 ms] Skipping target: _composite
+[        ] complete
+[        ] [1mPerforming hot reload...[22m
+[[1m +393 ms[22m] Scanned through 685 files in 327ms
+[   +3 ms] [1mSyncing files to device 22111317I...[22m
+[  +37 ms] Compiling dart to kernel with 1 updated files
+[  +14 ms] Processing bundle.
+[   +5 ms] <- recompile package:cloud_kitchen_app/main.dart cb963ffd-7938-4adc-9da5-10173da6baf3
+[        ] package:cloud_kitchen_app/screens/role_screens/kitchen_screen.dart
+[   +4 ms] <- cb963ffd-7938-4adc-9da5-10173da6baf3
+[   +3 ms] Bundle processing done.
+[[1m +825 ms[22m] Updating files.
+[        ] Pending asset builds completed. Writing dirty entries.
+[[1m +245 ms[22m] DevFS: Sync finished
+[   +3 ms] Syncing files to device 22111317I... (completed in 1,140ms)
+[        ] Synced 0.1MB.
+[[1m +472 ms[22m] <- accept
+[        ] reloaded 6 of 1000 libraries
+[  +60 ms] Reassembling application
+[[1m +421 ms[22m] Hot reload performed in 2,239ms.
+[[1m +186 ms[22m] Performing hot reload... (completed in 2,680ms)
+[  +15 ms] [1mReloaded 6 of 1000 libraries in 2,737ms (compile: 847 ms, reload: 472 ms, reassemble: 290 ms).[22m
+[[1m+165544 ms[22m] Skipping target: gen_dart_plugin_registrant
+[        ] Skipping target: gen_localizations
+[  +16 ms] Skipping target: _composite
+[   +9 ms] complete
+[        ] [1mPerforming hot reload...[22m
+[[1m +444 ms[22m] Scanned through 685 files in 331ms
+[   +5 ms] [1mSyncing files to device 22111317I...[22m
+[   +7 ms] Compiling dart to kernel with 1 updated files
+[   +4 ms] Processing bundle.
+[        ] <- recompile package:cloud_kitchen_app/main.dart 9ad46e91-e2ba-4432-807b-1c5e6084f54c
+[        ] package:cloud_kitchen_app/screens/role_screens/kitchen_screen.dart
+[        ] <- 9ad46e91-e2ba-4432-807b-1c5e6084f54c
+[   +9 ms] Bundle processing done.
+[[1m +522 ms[22m] Updating files.
+[   +1 ms] Pending asset builds completed. Writing dirty entries.
+[[1m +184 ms[22m] DevFS: Sync finished
+[        ] Syncing files to device 22111317I... (completed in 732ms)
+[   +7 ms] Synced 0.0MB.
+[[1m +461 ms[22m] <- accept
+[  +17 ms] reloaded 1 of 1000 libraries
+[[1m +112 ms[22m] Reassembling application
+[[1m +388 ms[22m] Hot reload performed in 1,879ms.
+[[1m +114 ms[22m] Performing hot reload... (completed in 2,281ms)
+[        ] [1mReloaded 1 of 1000 libraries in 2,373ms (compile: 528 ms, reload: 478 ms, reassemble: 315 ms).[22m
+[[1m+355120 ms[22m] Skipping target: gen_dart_plugin_registrant
+[   +5 ms] Skipping target: gen_localizations
+[  +43 ms] Skipping target: _composite
+[  +14 ms] complete
+[        ] [1mPerforming hot reload...[22m
+[[1m +603 ms[22m] Scanned through 685 files in 497ms
+[  +28 ms] [1mSyncing files to device 22111317I...[22m
+[  +22 ms] Compiling dart to kernel with 1 updated files
+[   +1 ms] Processing bundle.
+[   +6 ms] <- recompile package:cloud_kitchen_app/main.dart 0c35c843-e6c9-4fbe-890a-f52b487a425d
+[        ] package:cloud_kitchen_app/screens/home_screen.dart
+[        ] <- 0c35c843-e6c9-4fbe-890a-f52b487a425d
+[   +1 ms] Bundle processing done.
+[[1m+1655 ms[22m] Updating files.
+[        ] Pending asset builds completed. Writing dirty entries.
+[[1m +163 ms[22m] DevFS: Sync finished
+[        ] Syncing files to device 22111317I... (completed in 1,852ms)
+[   +2 ms] Synced 0.1MB.
+[[1m +403 ms[22m] <- accept
+[   +5 ms] reloaded 6 of 1000 libraries
+[  +70 ms] Reassembling application
+[[1m +519 ms[22m] Hot reload performed in 3,151ms.
+[[1m +193 ms[22m] Performing hot reload... (completed in 3.7s)
+[        ] [1mReloaded 6 of 1000 libraries in 3,869ms (compile: 1664 ms, reload: 408 ms, reassemble: 357 ms).[22m
+[[1m+224829 ms[22m] Skipping target: gen_dart_plugin_registrant
+[   +6 ms] Skipping target: gen_localizations
+[   +9 ms] Skipping target: _composite
+[   +1 ms] complete
+[   +4 ms] [1mPerforming hot reload...[22m
+[[1m +513 ms[22m] Scanned through 685 files in 439ms
+[   +6 ms] [1mSyncing files to device 22111317I.

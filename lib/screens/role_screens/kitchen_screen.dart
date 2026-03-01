@@ -1,14 +1,95 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../login_screen.dart';
 
-class KitchenScreen extends StatelessWidget {
+class KitchenScreen extends StatefulWidget {
   const KitchenScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
+  State<KitchenScreen> createState() => _KitchenScreenState();
+}
 
+class _KitchenScreenState extends State<KitchenScreen> {
+  // Firestore orders collection
+  final CollectionReference ordersCollection =
+      FirebaseFirestore.instance.collection('orders');
+
+  final User? user = FirebaseAuth.instance.currentUser;
+
+  // Update order status
+  void updateStatus(String orderId, String status) async {
+    try {
+      await ordersCollection.doc(orderId).update({'status': status});
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Order marked $status')));
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Failed to update: $e')));
+    }
+  }
+
+  // Build a list of orders filtered by status
+  Widget buildOrderList(String statusFilter) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: ordersCollection
+          .where('status', isEqualTo: statusFilter)
+          .orderBy('createdAt', descending: true)
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          print(snapshot.error);
+          return Text('Error: ${snapshot.error}');
+        }
+        if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
+
+        final orders = snapshot.data!.docs;
+
+        if (orders.isEmpty) return Text('No $statusFilter orders');
+
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: orders.length,
+          itemBuilder: (context, index) {
+            final order = orders[index];
+            final items = List.from(order['items']);
+
+            return Card(
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              child: ExpansionTile(
+                title: Text('Order #${order.id} • ₹${order['totalPrice']}'),
+                subtitle: Text('Status: ${order['status']}'),
+                children: [
+                  ...items.map((item) => ListTile(
+                        title: Text(item['name']),
+                        trailing: Text('x${item['quantity']}'),
+                      )),
+                  ButtonBar(
+                    children: [
+                      if (statusFilter == 'Pending')
+                        ElevatedButton(
+                          onPressed: () => updateStatus(order.id, 'Cooking'),
+                          child: const Text('Start Cooking'),
+                        ),
+                      if (statusFilter == 'Cooking')
+                        ElevatedButton(
+                          onPressed: () => updateStatus(order.id, 'Completed'),
+                          child: const Text('Mark Completed'),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
@@ -77,69 +158,36 @@ class KitchenScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
 
-            // Kitchen Cards
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
-                children: const [
-                  KitchenCard(title: "Pending Orders", icon: Icons.pending_actions),
-                  SizedBox(height: 15),
-                  KitchenCard(title: "Cooking Orders", icon: Icons.kitchen),
-                  SizedBox(height: 15),
-                  KitchenCard(title: "Completed Orders", icon: Icons.check_circle),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Pending Orders",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  buildOrderList('Pending'),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Cooking Orders",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  buildOrderList('Cooking'),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Completed Orders",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  buildOrderList('Completed'),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
-
-            const SizedBox(height: 30),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class KitchenCard extends StatelessWidget {
-  final String title;
-  final IconData icon;
-
-  const KitchenCard({
-    super.key,
-    required this.title,
-    required this.icon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            blurRadius: 6,
-            spreadRadius: 2,
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size: 40, color: Colors.deepOrange),
-          const SizedBox(width: 15),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const Spacer(),
-          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
-        ],
       ),
     );
   }
