@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'register_screen.dart';
 import 'home_screen.dart';
+import 'role_screens.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,16 +19,51 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> loginUser() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      // 1️⃣ Sign in with Firebase Auth
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
 
-      // Go to Home Screen after successful login
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
+      final uid = userCredential.user!.uid;
+
+      // 2️⃣ Fetch Firestore document
+      final userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+      if (!userDoc.exists) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("User data not found in Firestore.")),
+        );
+        return;
+      }
+
+      // 3️⃣ Get role
+      final role = userDoc['role'] ?? 'customer';
+
+      // 4️⃣ Navigate based on role
+      if (role == 'admin') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const AdminScreen()),
+        );
+      } else if (role == 'kitchen') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const KitchenScreen()),
+        );
+      } else if (role == 'store') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const StoreScreen()),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }
 
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
